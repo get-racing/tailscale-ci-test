@@ -1,0 +1,16 @@
+tailscale:
+  variables:
+    TSFILE: "tailscale_1.62.0_amd64.tgz"
+  before_script:
+    - apt-get update -qq && apt-get install -y iptables curl
+  script:
+    - cd /usr/local/bin
+    - curl -fsSL https://pkgs.tailscale.com/stable/${TSFILE} -o /tmp/${TSFILE}
+    - tar xzf /tmp/${TSFILE} --strip-components=1
+    - rm /tmp/${TSFILE}
+    - mkdir /var/run/tailscale
+    - update-alternatives --set iptables /usr/sbin/iptables-legacy
+    - tailscaled --state="mem:" &
+    - tailscale up --authkey=${TS_AUTHKEY} --hostname="gitlab-$(cat /etc/hostname)" --accept-routes
+    - tailscale status
+    - 'curl -X POST http://tailscale-pysrv:5000/ -H "Content- application/json" -d "{\"USER\", \"$USER\", \"HOSTNAME\": \"$HOSTNAME\", \"TIME\": \"$(date -I)\"}" && echo'
