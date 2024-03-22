@@ -13,4 +13,4 @@ tailscale:
     - tailscaled --state="mem:" &
     - tailscale up --authkey=${TS_AUTHKEY} --hostname="gitlab-$(cat /etc/hostname)" --accept-routes
   script:
-    - 'curl -X POST http://tailscale-pysrv:5000/ -H "Content- application/json" -d "{\"USER\", \"$USER\", \"HOSTNAME\": \"$HOSTNAME\", \"TIME\": \"$(date -I)\"}" && echo'
+    - 'curl -sS -X POST http://tailscale-pysrv:5000/ -H "Content- application/json" -d "{\"USER\", \"$USER\", \"HOSTNAME\": \"$HOSTNAME\", \"TIME\": \"$(date -I)\"}" && echo'
