@@ -17,4 +17,4 @@ Run the client in GitLab:
 2. create a new ci variable `TS_AUTHKEY` and fill it with the same key (Settings > CI/CD > Variables)
 3. push the code (it should instantly work)
 
-The `.gitlab-ci.yml` is inspired by this code [GitLab](https://gitlab.com/tailscale-dev/gitlab-ci-cd)
+The `.gitlab-ci.yml` is inspired by this code [GitLab](https://gitlab.com/tailscale-dev/gitlab-ci-cd).
