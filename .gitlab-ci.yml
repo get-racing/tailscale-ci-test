@@ -1,7 +1,7 @@
 tailscale:
   image: ubuntu:latest
   variables:
-    TSFILE: "tailscale_1.62.0_amd64.tgz"
+    TSFILE: "tailscale_1.80.3_amd64.tgz"
   before_script:
     - apt update -qq && apt install -y iptables curl
     - cd /usr/local/bin
